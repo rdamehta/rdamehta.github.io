@@ -1,8 +1,8 @@
 # Site settings
-title: "Typewriter"
-description: "So I was feeling nostalgic."
+title: "Ravi's Musings"
+description: "A clean space for data science thoughts. a lot cleaner than some data."
 baseurl: ""
-url: "http://alixedi.github.io"
+url: "http://rdamehta.github.io"
 
 # Build settings
 markdown: kramdown
@@ -14,9 +14,9 @@ paginate: 3
 links:
   - title: "abt"
     url: /about
-  - title: "twt"
-    url: http://twitter.com/alixedi
+  - title: "in"
+    url: http://www.linkedin.com/in/ravimehta1989
   - title: "git"
-    url: http://github.com/alixedi
+    url: http://github.com/rdamehta
   - title: "rss"
     url: /feed.xml
