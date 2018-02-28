@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Random Forest awesome links!"
-date: YYYY-MM-DD
 categories: jekyll update
 ---
 
