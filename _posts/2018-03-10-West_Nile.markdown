@@ -8,11 +8,9 @@ date:   2018-03-10 12:12:12
 ---
 
 ### Heatmaps year by year
-2007
-![png](/img/2007.PNG=75x)
 
-2009
-![png](/img/2009.PNG=75x)
+<img src="/img/2007.PNG" alt="2007" style="width: 75px;"/>
+
 
 2011
 ![png](/img/2011.PNG)
