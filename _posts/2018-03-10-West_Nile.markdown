@@ -11,11 +11,11 @@ date:   2018-03-10 12:12:12
 
 <img src="/img/2007.PNG" alt="2007" style="width: 250px;"/>
 
-<img src="/img/2009.PNG" alt="2007" style="width: 250px;"/>
+<img src="/img/2009.PNG" alt="2009" style="width: 250px;"/>
 
-<img src="/img/2011.PNG" alt="2007" style="width: 250px;"/>
+<img src="/img/2011.PNG" alt="2011" style="width: 250px;"/>
 
-<img src="/img/2013.PNG" alt="2007" style="width: 250px;"/>
+<img src="/img/2013.PNG" alt="2013" style="width: 250px;"/>
 
 ### Description of Project and some Results
 I Combined Weather data from the same timespan that the City of Chicago Health Department set their mosquito traps with data collected by from those same mosquito traps. 
