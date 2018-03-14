@@ -4,7 +4,7 @@ subtitle: "Predicting the Geographical Spread of West Nile Virus in Chicago"
 author: "Ravi"
 avatar: "img/authors/wferr.png"
 image: "img/f.jpg"
-date:   2015-04-25 12:12:12
+date:   2018-03-10 12:12:12
 ---
 
 ### Dolor sit amet?
