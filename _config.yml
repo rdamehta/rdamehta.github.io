@@ -3,5 +3,5 @@ title: Ravi's Musings
 description: A blog showcasing some cool projects
 keywords: Data Science, Machine Learning, Visualization
 author: Ravi Mehta
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "" # the base hostname & protocol for your site
+baseurl: "rdamehta.github.io" # the subpath of your site, e.g. /blog/
+url: "https://rdamehta.github.io" # the base hostname & protocol for your site
