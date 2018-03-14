@@ -4,4 +4,4 @@ description: A blog showcasing some cool projects
 keywords: Data Science, Machine Learning, Visualization
 author: Ravi Mehta
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "" # the base hostname & protocol for your site
+url: "http://rdamehta.github.io" # the base hostname & protocol for your site
