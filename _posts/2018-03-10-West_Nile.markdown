@@ -8,10 +8,10 @@ date:   2018-03-10 12:12:12
 ---
 
 ### Heatmaps year by year
-![png]"img/2007.png"
-![png]"img/2009.png"
-![png]"img/2011.png"
-![png]"img/2013.png"
+![png](img/2007.png)
+![png](img/2009.png)
+![png](img/2011.png)
+![png](img/2013.png)
 
 ### Description of Project and some Results
 Combined Weather Data from the same timespan with data collected by mosquito traps in the city
