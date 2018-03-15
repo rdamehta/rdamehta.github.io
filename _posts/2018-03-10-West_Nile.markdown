@@ -7,6 +7,8 @@ avatar: "img/authors/the-wire-couch.jpg"
 image: "img/chicago.jpg"
 date:   2018-03-10 12:12:12
 ---
+
+
 This project was particularly fascinating to me for a multitude of reasons. Having actually suffered and recovered from malaria, I was interested in how mosquito vectors could spread other diseases, and with my background in public health and medicine I wanted to know how West Nile spread in Chicago. 
 
 I got the inspiration from browsing kaggle datasets as we data scientists do looking for interesting things to play around with. This is the [kaggle competition](https://www.kaggle.com/c/predict-west-nile-virus/) for those interested.
