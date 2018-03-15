@@ -1,4 +1,3 @@
-
 ---
 title:  "Mosquitos and Heat Maps"
 subtitle: "Predicting the Geographical Spread of West Nile Virus in Chicago"
