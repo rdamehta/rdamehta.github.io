@@ -8,7 +8,9 @@ date:   2018-03-10 12:12:12
 ---
 
 
-This project was particularly fascinating to me for a multitude of reasons. Having actually suffered and recovered from malaria, I was interested in how mosquito vectors could spread other diseases, and with my background in public health and medicine I wanted to know how West Nile spread in Chicago. 
+This project was particularly fascinating to me for a multitude of reasons. 
+ 
+Having actually suffered and recovered from malaria, I was interested in how mosquito vectors could spread other diseases, and with my background in public health and medicine I wanted to know how West Nile spread in Chicago. 
 
 I got the inspiration from browsing kaggle datasets as we data scientists do looking for interesting things to play around with. This is the [kaggle competition](https://www.kaggle.com/c/predict-west-nile-virus/) for those interested.
 
@@ -16,13 +18,21 @@ I got the inspiration from browsing kaggle datasets as we data scientists do loo
 Training data was data from the odd years between 2007 to 2013. The testing data set contained the even years and I treated it as sacred
 
 2007
+
 <img src="/img/2007.PNG" alt="2007" style="width: 400px;"/>
+
 2009
+
 <img src="/img/2009.PNG" alt="2009" style="width: 400px;"/>
+
 2011
+
 <img src="/img/2011.PNG" alt="2011" style="width: 400px;"/>
+
 2013
+
 <img src="/img/2013.PNG" alt="2013" style="width: 400px;"/>
+
 
 And here is where they placed the traps:
 
@@ -45,9 +55,9 @@ To combat this and prevent my model from just predicting zeros and calling it a 
 
 Here are my results for the Random Forest Classifier:
 
-<img src="/img/RFROC.PNG" alt="weather" style="width: 400px;"/>
+<img src="/img/RFROC.PNG" alt="Random Forest" style="width: 400px;"/>
 
 
 Also tried out a Neural Network with these results:
 
-<img src="/img/NNROCr.PNG" alt="weather" style="width: 400px;"/>
+<img src="/img/NNROC.PNG" alt="Neural Network" style="width: 400px;"/>
