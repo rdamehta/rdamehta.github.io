@@ -31,7 +31,7 @@ And here is where they placed the traps:
 ### Description of Project and some Results
 The task at hand was to predict where West Nile Virus would show up based on data collected from the various mosquito traps dispersed through the greater Chicago region. There were 8 species of mosquitos collected, but a vast majority of them were some type of Culex Pipiens/Restuans. Here is the distribution of positive West Nile cases by Species for every time a data was collected from a mosquito trap.
 
-<img src="/img/species.png" alt="species" style="width: 400px;"/>
+<img src="/img/Species.png" alt="species" style="width: 400px;"/>
 
 Additionally I had weather data available to me over the dame time period West Nile was running rampant through Chicago. This was vitally important since mosquito breeding season are the summer months, and mosquitoes prefer humid, tropical climates, and they don't like rain. Here is the weather data, with min and max temperature, wetbulb, and dewpoint for humidity analogs. 
 
