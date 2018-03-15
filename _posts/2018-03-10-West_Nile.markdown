@@ -16,23 +16,26 @@ I got the inspiration from browsing kaggle datasets as we data scientists do loo
 Training data was data from the odd years between 2007 to 2013. The testing data set contained the even years and I treated it as sacred
 
 2007
-<img src="/img/2007.PNG" alt="2007" style="width: 300px;"/>
+<img src="/img/2007.PNG" alt="2007" style="width: 400px;"/>
 2009
-<img src="/img/2009.PNG" alt="2009" style="width: 250px;"/>
+<img src="/img/2009.PNG" alt="2009" style="width: 400px;"/>
 2011
-<img src="/img/2011.PNG" alt="2011" style="width: 250px;"/>
+<img src="/img/2011.PNG" alt="2011" style="width: 400px;"/>
 2013
-<img src="/img/2013.PNG" alt="2013" style="width: 250px;"/>
+<img src="/img/2013.PNG" alt="2013" style="width: 400px;"/>
 
-And here is where they placed the traps
-<img src="/img/traps.png" alt="traps" style="width: 300px;"/>
+And here is where they placed the traps:
+
+<img src="/img/traps.png" alt="traps" style="width: 400px;"/>
 
 ### Description of Project and some Results
 The task at hand was to predict where West Nile Virus would show up based on data collected from the various mosquito traps dispersed through the greater Chicago region. There were 8 species of mosquitos collected, but a vast majority of them were some type of Culex Pipiens/Restuans. Here is the distribution of positive West Nile cases by Species for every time a data was collected from a mosquito trap.
-<img src="/img/species.png" alt="species" style="width: 250px;"/>
+
+<img src="/img/species.png" alt="species" style="width: 400px;"/>
 
 Additionally I had weather data available to me over the dame time period West Nile was running rampant through Chicago. This was vitally important since mosquito breeding season are the summer months, and mosquitoes prefer humid, tropical climates, and they don't like rain. Here is the weather data, with min and max temperature, wetbulb, and dewpoint for humidity analogs. 
-<img src="/img/weather.PNG" alt="weather" style="width: 250px;"/>
+
+<img src="/img/weather.PNG" alt="weather" style="width: 600px;"/>
 
 So on to the modeling! After cleaning, feature engineering, and merging the weather data and training data collected from the traps I decided to make a random forest classifier. However we had one issue: we had some seriously unbiased classes.
 - West Nile negative: 9955 cases
@@ -41,8 +44,10 @@ So on to the modeling! After cleaning, feature engineering, and merging the weat
 To combat this and prevent my model from just predicting zeros and calling it a day, I oversampled the minority classes. Essentially I artificially created more positive cases to match a 1:1 ratio with the negative cases. But first I split my data, and oversampled one spit, and used the other split as a holdout set to test my model against. 
 
 Here are my results for the Random Forest Classifier:
-<img src="/img/RFROC.PNG" alt="weather" style="width: 250px;"/>
+
+<img src="/img/RFROC.PNG" alt="weather" style="width: 400px;"/>
 
 
 Also tried out a Neural Network with these results:
-<img src="/img/NNROCr.PNG" alt="weather" style="width: 250px;"/>
+
+<img src="/img/NNROCr.PNG" alt="weather" style="width: 400px;"/>
