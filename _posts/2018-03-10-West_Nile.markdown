@@ -45,7 +45,7 @@ The task at hand was to predict where West Nile Virus would show up based on dat
 
 Additionally I had weather data available to me over the dame time period West Nile was running rampant through Chicago. This was vitally important since mosquito breeding season are the summer months, and mosquitoes prefer humid, tropical climates, and they don't like rain. Here is the weather data, with min and max temperature, wetbulb, and dewpoint for humidity analogs. 
 
-<img src="/img/weather.PNG" alt="weather" style="width: 600px;"/>
+<img src="/img/weather.PNG" alt="weather" style="width: 710px;"/>
 
 So on to the modeling! After cleaning, feature engineering, and merging the weather data and training data collected from the traps I decided to make a random forest classifier. However we had one issue: we had some seriously unbiased classes.
 - West Nile negative: 9955 cases
@@ -60,4 +60,4 @@ Here are my results for the Random Forest Classifier:
 
 Also tried out a Neural Network with these results:
 
-<img src="/img/NNROC.PNG" alt="Neural Network" style="width: 800px;"/>
+<img src="/img/NNROC.PNG" alt="Neural Network" style="width: 725px;"/>
