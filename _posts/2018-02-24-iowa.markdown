@@ -88,9 +88,9 @@ In keeping with xkcd comic above, lets use xkcd style in our graphs!
 
 
 
-img/Iowa_images/Project%202%20Ravi%20Mehta_11_1.png
+<img src="img/Iowa_images/Project%202%20Ravi%20Mehta_11_1.png" alt="2007" style="width: 400px;"/>
 
-![png](img/Iowa_images/Project%202%20Ravi%20Mehta_11_1.png | width=400)
+![png]test(img/Iowa_images/Project%202%20Ravi%20Mehta_11_1.png)
 
 
 
