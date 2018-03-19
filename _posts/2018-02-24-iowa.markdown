@@ -2,7 +2,7 @@
 title:  "Iowa Liquor Sales"
 subtitle: "What do they drink?"
 author: "Ravi"
-avatar: "img/authors/the-wire-couch.png"
+avatar: "img/authors/the-wire-couch.jpg"
 image: "img/distillery.jpg"
 date:   2018-02-24 12:12:12
 ---
