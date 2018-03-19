@@ -99,51 +99,6 @@ img/Iowa_images/Project%202%20Ravi%20Mehta_11_1.png
 
 
 
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>Sale (Dollars)</th>
-    </tr>
-    <tr>
-      <th>City</th>
-      <th>Store Number</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="2" valign="top">DES MOINES</th>
-      <th>2633</th>
-      <td>12282646.26</td>
-    </tr>
-    <tr>
-      <th>4829</th>
-      <td>11085530.53</td>
-    </tr>
-    <tr>
-      <th>IOWA CITY</th>
-      <th>2512</th>
-      <td>5206377.22</td>
-    </tr>
-    <tr>
-      <th>CEDAR RAPIDS</th>
-      <th>3385</th>
-      <td>4759187.79</td>
-    </tr>
-    <tr>
-      <th>WINDSOR HEIGHTS</th>
-      <th>3420</th>
-      <td>4018414.55</td>
-    </tr>
-    <tr>
-  
-
-
-
-
 ![png](img/Iowa_images/Project%202%20Ravi%20Mehta_13_1.png)
 
 
