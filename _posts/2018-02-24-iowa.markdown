@@ -9,7 +9,9 @@ date:   2018-02-24 12:12:12
 
 # Forecasting Liquor Sales in the State of Iowa
 
-![title](https://imgs.xkcd.com/comics/beer_2x.png)
+
+<img src="https://imgs.xkcd.com/comics/beer_2x.png" alt="COMIC" style="width: 700px; height: 600px"/>
+
 
 
 # Exploring the data
