@@ -77,9 +77,9 @@ Which algorithm (visually) performs best?
 <img src="img/cluster_images/DBSCAN-vs-kmeans-vs-hierarchical_16_0.png" alt="flame" style="width: 700px;height: 700px"/>
 
 
-You can reallllyy tune DBSCAN, here I had epsilon (our distance between samples in a cluster) to be 0.218 and had the min number of sampels as 13.
+You can reallllyy tune DBSCAN, here I had epsilon (our distance between samples in a cluster) to be 0.218 and had the min number of samples as 13.
 
-Out of the box though, kmeans, and heirarchical clustering didn't do a bad job. you can see by how they grouped their clusters that both of these use distance metrics primarily. K means uses distances from a center point 'X', while Agglomerative/Heirarchal see which points are closest togethor, creates a group and then adds members by calculating the shortest distance from any member of the new group to another point not in the group. We set the groups to 7, so the algorithim stops when it has seven groups.
+Out of the box though, kmeans, and heirarchical clustering didn't do a bad job. you can see by how they grouped their clusters that both of these use distance metrics primarily. K means uses distances from a center point 'X', while Agglomerative/Heirarchal sees which points are closest togethor, creates a group and then adds members by calculating the shortest distance from any member of the new group to another point not in the group. We set the groups to 7, so the algorithim stops when it has seven groups.
 
 
 ### Comp
@@ -98,7 +98,7 @@ DBSCAN performs best, but really, none of them are perfect. This demonstrates so
 <img src="img/cluster_images/DBSCAN-vs-kmeans-vs-hierarchical_20_0.png" alt="flame" style="width: 700px;height: 700px"/>
 
 
-I found this one really fascinating. I could have probably fine tuned DBSCAN even more, but regardless it found 3 groups instead fo two. again highlighting the issue with clusters that have intradistances between points. AKA if cluster A has a distance of 1, and cluster B has a distance 2, this is problematic for our algorithm.
+I found this one really fascinating. I could have probably fine tuned DBSCAN even more, but regardless it found 3 groups instead fo two. again highlighting the issue with clusters that have different intradistances between points. AKA if cluster A has a distance of 1, and cluster B has a distance 2, this is problematic for our algorithm.
 
 I like how Kmeans and Agglomerative/Heirarchal attempt this. You can clearly see kmeans takes a mean centered approach and heirarchal takes a bottom up approach. 
 
