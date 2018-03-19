@@ -1,20 +1,579 @@
 ---
-title:  "I scream"
-subtitle: "But do you scream?"
-author: "Wferr"
-avatar: "img/authors/wferr.png"
-image: "img/e.jpg"
-date:   2015-04-24 12:12:12
+title:  "Iowa Liquor Sales"
+subtitle: "What do they drink?"
+author: "Ravi"
+avatar: "img/authors/the-wire-couch.png"
+image: "img/distillery.jpg"
+date:   2018-02-24 12:12:12
 ---
 
-### Dolor sit amet?
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vestibulum non mi non pulvinar. Donec tempus risus vel ex fringilla tempor. Vivamus pharetra non mauris quis fermentum. Vestibulum sed maximus elit, sit amet suscipit orci. Morbi at enim at libero dignissim egestas vel ac nisi. Etiam at lectus a arcu sodales consequat. Aliquam consequat ligula sed purus tincidunt, a ultrices nibh dapibus. Phasellus convallis ipsum nec semper ultricies. In facilisis lacus velit, sit amet lacinia velit blandit id. Nullam ut magna erat. Aliquam sit amet dapibus odio, aliquet tempus tortor. Donec in nisi massa.
+# Forecasting Liquor Sales in the State of Iowa
 
-### Aliquam suscipit.
-Cras eget nisl accumsan, porta nisl in, egestas sapien. Vestibulum gravida nulla sed facilisis tempor. Suspendisse maximus nisi sit amet velit sodales fringilla. Vivamus luctus risus eget dui consectetur porttitor. Maecenas ut ultrices orci. Maecenas mollis est eu sodales mollis. Nulla facilisi. Suspendisse eros arcu, elementum sed sem eu, pharetra rhoncus odio. Proin nec tincidunt velit. Cras nisl augue, faucibus sed mauris in, vestibulum mollis nisl. Nam id libero ultrices, consequat ex vitae, convallis nulla.
+![title](https://imgs.xkcd.com/comics/beer_2x.png)
 
-Suspendisse lorem odio, blandit at nisl quis, hendrerit tempus tellus. Donec eget leo quis nisi vulputate consectetur. Praesent dignissim enim elit, congue luctus nisl cursus at. Sed rutrum molestie risus. Donec vulputate gravida accumsan. Vivamus tempus ullamcorper eleifend. Sed sagittis mi ut dolor tincidunt, ac rutrum nisi commodo.
 
-Fusce non elit in diam rutrum vestibulum. Donec vitae elementum erat. Praesent elementum eget justo at bibendum. Fusce interdum diam lorem, ut placerat elit pretium quis. Quisque eu urna at quam commodo sagittis. Etiam posuere convallis tincidunt. Phasellus vitae ligula neque. Vivamus a purus at dolor iaculis placerat. Curabitur convallis eu lacus congue sagittis.
+# Exploring the data
 
-Aliquam suscipit fermentum mauris a accumsan. In facilisis, mauris quis pulvinar tempus, turpis sapien sodales nibh, nec feugiat augue est quis nisi. Fusce eget odio feugiat, luctus quam et, dapibus nulla. Sed ornare lacus non libero lacinia pretium. In eu dui vitae purus euismod feugiat ac ac est. Morbi vitae pretium lorem, non eleifend felis. Nullam at massa feugiat, rutrum elit at, semper lacus. Etiam vel rutrum felis. Nullam quis auctor lorem, et tempor arcu.
+I performed some exploratory statistical analysis and made some plots, such as histograms of transaction totals, bottles sold, etc.
+
+I had to clean and munge the data first. Checking for Missing values and NaNs. I try and stay away from code snippets in my blog posts, but i just wanted to show one here to give the viewer a better sense of the columns of table and the datatype they were encoded in.
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+%matplotlib inline
+df.info() 
+#looks likesome Nulls in County and county number. lets use either city and or zipcode and see how much each
+#city/zipcode sold
+#change all prices into floats.
+```
+
+    <class 'pandas.core.frame.DataFrame'>
+    Int64Index: 2709552 entries, 695077 to 2709551
+    Data columns (total 24 columns):
+    Invoice/Item Number      object
+    Date                     datetime64[ns]
+    Store Number             int64
+    Store Name               object
+    Address                  object
+    City                     object
+    Zip Code                 object
+    Store Location           object
+    County Number            float64
+    County                   object
+    Category                 float64
+    Category Name            object
+    Vendor Number            int64
+    Vendor Name              object
+    Item Number              int64
+    Item Description         object
+    Pack                     int64
+    Bottle Volume (ml)       int64
+    State Bottle Cost        object
+    State Bottle Retail      object
+    Bottles Sold             int64
+    Sale (Dollars)           object
+    Volume Sold (Liters)     float64
+    Volume Sold (Gallons)    float64
+    dtypes: datetime64[ns](1), float64(4), int64(6), object(13)
+    memory usage: 516.8+ MB
+    
+
+Sales, Cost, and Retail are stored as a non numeric object, so lets get rid of the dollar sign and store it as a float
+```python
+
+df['Sale (Dollars)'] = df['Sale (Dollars)'].str.replace('$', '').astype('float64')
+df['State Bottle Cost'] = df['State Bottle Cost'].str.replace('$', '').astype('float64')
+df['State Bottle Retail'] = df['State Bottle Retail'].str.replace('$', '').astype('float64')
+```
+When working with Strings I tend to either keep them lowercase or uppercase so just in case people have entered the cities with the first letter capitalized or not the computer won't equte them as different values aka cities.
+```python
+df['City'] = df['City'].map(lambda x: x.upper())
+```
+ I saw some of the cities were mispelled, in the long run this probably wont make a difference but i renamed them anways.
+```python
+#
+df['City'] = df['City'].map(lambda x: x.replace('MT','MOUNT') if x[0] == 'M' else x)
+df['City'] = df['City'].map(lambda x: x.replace('ST ','ST. ') if x[0] == 'S' else x)
+df['City'] = df['City'].map(lambda x: x.replace('OTTUWMA','OTTUMWA') if x == 'OTTUWMA' else x)
+df['City'] = df['City'].map(lambda x: x.replace('LEMARS','LE MARS') if x == 'LEMARS' else x)
+df['City'] = df['City'].map(lambda x: x.replace('LECLAIRE','LE CLAIRE') if x == 'LECLAIRE' else x)
+df['City'] = df['City'].map(lambda x: x.replace('GUTTENBURG','GUTTENBERG') if x == 'GUTTENBURG' else x)
+
+```
+### Lets show the cities with the top 25 sales. 
+In keeping with xkcd comic above, lets use xkcd style in our graphs!
+
+
+
+
+
+
+
+
+![png](img/Iowa_images/Project%202%20Ravi%20Mehta_11_1.png)
+
+
+
+### Here are a few stores with the best sales for the year of 2015
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>Sale (Dollars)</th>
+    </tr>
+    <tr>
+      <th>City</th>
+      <th>Store Number</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">DES MOINES</th>
+      <th>2633</th>
+      <td>12282646.26</td>
+    </tr>
+    <tr>
+      <th>4829</th>
+      <td>11085530.53</td>
+    </tr>
+    <tr>
+      <th>IOWA CITY</th>
+      <th>2512</th>
+      <td>5206377.22</td>
+    </tr>
+    <tr>
+      <th>CEDAR RAPIDS</th>
+      <th>3385</th>
+      <td>4759187.79</td>
+    </tr>
+    <tr>
+      <th>WINDSOR HEIGHTS</th>
+      <th>3420</th>
+      <td>4018414.55</td>
+    </tr>
+    <tr>
+  
+
+
+
+
+![png](img/Iowa_images/Project%202%20Ravi%20Mehta_13_1.png)
+
+
+
+### Avg Retail Price per Bottle
+![png](img/Iowa_images/Project%202%20Ravi%20Mehta_15_1.png)
+
+
+
+### Cost of Bottle per store
+
+
+![png](img/Iowa_images/Project%202%20Ravi%20Mehta_16_1.png)
+
+### Cost and Retail plotted on the same graph, I included some code to see how seaborn uses matplotlib functionality
+
+```python
+
+fig, ax = plt.subplots(figsize = (12,8))
+#c1, c2, c3 = sns.color_palette("Set1", 3)
+ax.set_xlim(xmin = 0, xmax = 40)
+plt.xkcd()
+sns.distplot(df.groupby('Store Number')['State Bottle Retail'].mean(),
+             hist_kws={"histtype": "stepfilled", "color": "yellow"},
+             norm_hist = False,
+             kde = True,
+             ax = ax,
+             label = 'Retail Price')
+
+sns.distplot(df.groupby('Store Number')['State Bottle Cost'].mean(),
+             hist_kws={"histtype": "stepfilled", "color": "deepskyblue", 'alpha': .25},
+             norm_hist = False,
+             kde = True,
+             ax = ax,
+             label = 'Cost for Store')
+
+plt.title('Retail Price and Cost of Bottles')
+plt.ylabel('Density')
+plt.xlabel('Each Stores Average Price')
+plt.legend()
+```
+
+
+
+
+    <matplotlib.legend.Legend at 0x2b2d40024e0>
+
+
+
+
+![png](img/Iowa_images/Project%202%20Ravi%20Mehta_17_1.png)
+
+
+
+
+
+![png](img/Iowa_images/Project%202%20Ravi%20Mehta_19_1.png)
+
+
+
+
+![png](img/Iowa_images/Project%202%20Ravi%20Mehta_21_1.png)
+
+
+
+```python
+fig, ax = plt.subplots(figsize = (18,12))
+df[df['Category Name'] == 'CANADIAN WHISKIES']['Item Description'].value_counts().head(10).plot(kind = 'barh', color = 'gold', fontsize = 24)
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x2b2d4133c88>
+
+
+
+
+![png](Project%202%20Ravi%20Mehta_files/Project%202%20Ravi%20Mehta_22_1.png)
+
+
+
+```python
+fig, ax = plt.subplots(figsize = (18,12))
+df[df['Category Name'] == 'STRAIGHT BOURBON WHISKIES']['Item Description'].value_counts().head(10).plot(kind = 'barh', color = 'purple', fontsize = 24)
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x2b2a37898d0>
+
+
+
+
+![png](Project%202%20Ravi%20Mehta_files/Project%202%20Ravi%20Mehta_23_1.png)
+
+
+## EDA Findings summarized
+
+ top 5 stores with highest total sales are:
+ DES MOINES 	|2633 	|12282646.26
+DES MOINES				            |4829 	|11085530.53
+				            
+ IOWA CITY 		|2512 	|5206377.22
+
+CEDAR RAPIDS 	|3385 	|4759187.79
+ WINDSOR HEIGHTS 	|3420 	|4018414.55
+
+
+ The average number of bottles sold by store per transaction was 10 bottles, there was a heavy positive skew though
+
+average retail cost was 14.7 - averate store cost 9.8 = 4.9$ margins on each bottle sold
+
+ Vodka 80 proof, Canadian whiskeys, and straight bourbon whiskies were the most popular type of liquors
+ 
+Haweye vodka, black velvet, and Jim bean were the top sellers in those respective categories
+
+
+
+## Mining and Refining the data
+
+Now I'm ready to compute the variables I'll use for my regression from the data. For example, I computed the total sales per store from Jan to March of 2015, mean price per bottle, etc. 
+
+I created added my predictors piecemeal to a pandas dataframe
+
+I also started looking for relationships within the data and amongst the variables to get a better sense of what I wanted to include in my final model
+
+
+
+```python
+#for our geographic location lets just use data from 2015 since new stores will have sales
+df_2015 = df.loc[df['Date'].dt.year == 2015]
+
+```
+
+
+```python
+target = df_2015.groupby('Store Number')[['Sale (Dollars)']].sum().sort_values(by = 'Sale (Dollars)',ascending = False).reset_index()
+target.head()
+```
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Store Number</th>
+      <th>Sale (Dollars)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2633</td>
+      <td>9839393.08</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4829</td>
+      <td>8742779.31</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2512</td>
+      <td>4155665.47</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3385</td>
+      <td>3947176.01</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3420</td>
+      <td>3422351.55</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+#sum sales from jan to march 2015
+mask = (df_2015['Date'] >= '2015-01-05') & (df_2015['Date'] <= '2015-03-31')
+X = df_2015[mask].groupby('Store Number')[['Sale (Dollars)']].sum().reset_index()
+X.rename(columns = {'Sale (Dollars)':'Jan to March Sales'}, inplace = True)
+```
+
+
+```python
+X.head()
+```
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Store Number</th>
+      <th>Jan to March Sales</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2106</td>
+      <td>337166.53</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2113</td>
+      <td>22351.86</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2130</td>
+      <td>277764.46</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2152</td>
+      <td>16805.11</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2178</td>
+      <td>54411.42</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+```python
+#adding average bottle retail, average bottle cost, and total volume sold features to my X (predictors)
+bottles_sum = df.groupby('Store Number')[['Bottles Sold']].mean().reset_index()
+X = X.merge( bottles_sum, how = 'left', on = ('Store Number'))
+X = X.merge((df.groupby('Store Number')[['State Bottle Retail']].mean().reset_index()),
+            how = 'left', on = ('Store Number'))
+X = X.merge((df.groupby('Store Number')[['State Bottle Cost']].mean().reset_index()),
+            how = 'left', on = ('Store Number'))
+X =X.merge((df.groupby('Store Number')[['Volume Sold (Liters)']].mean().reset_index()),
+           how = 'left', on = ('Store Number'))
+```
+
+
+```python
+#renaming columns
+X.rename(columns = {'State Bottle Cost':'Avg Bottle Cost',
+                    'State Bottle Retail':'Avg Bottle Retail',
+                    'Volume Sold (Liters)':'Avg Volume Sold (Liters)',
+                   'Bottles Sold':'Avg Bottles Sold'},
+         inplace = True)
+```
+
+
+```python
+X.head(10)
+```
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Store Number</th>
+      <th>Jan to March Sales</th>
+      <th>Avg Bottles Sold</th>
+      <th>Avg Bottle Retail</th>
+      <th>Avg Bottle Cost</th>
+      <th>Avg Volume Sold (Liters)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2106</td>
+      <td>337166.53</td>
+      <td>19.514209</td>
+      <td>16.126917</td>
+      <td>10.744967</td>
+      <td>18.355608</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2113</td>
+      <td>22351.86</td>
+      <td>4.667047</td>
+      <td>15.963609</td>
+      <td>10.632919</td>
+      <td>4.623090</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2130</td>
+      <td>277764.46</td>
+      <td>18.523256</td>
+      <td>15.386269</td>
+      <td>10.251927</td>
+      <td>16.787416</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2152</td>
+      <td>16805.11</td>
+      <td>4.024110</td>
+      <td>13.139489</td>
+      <td>8.742015</td>
+      <td>4.195431</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2178</td>
+      <td>54411.42</td>
+      <td>7.677192</td>
+      <td>15.127811</td>
+      <td>10.068841</td>
+      <td>8.070549</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2190</td>
+      <td>255939.81</td>
+      <td>8.285090</td>
+      <td>18.142489</td>
+      <td>12.086029</td>
+      <td>5.056179</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2191</td>
+      <td>319020.69</td>
+      <td>13.863643</td>
+      <td>17.125039</td>
+      <td>11.411090</td>
+      <td>14.230320</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2200</td>
+      <td>45340.33</td>
+      <td>4.001452</td>
+      <td>17.425620</td>
+      <td>11.606667</td>
+      <td>4.477271</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2205</td>
+      <td>57849.23</td>
+      <td>6.048682</td>
+      <td>15.036204</td>
+      <td>10.013212</td>
+      <td>5.043834</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2228</td>
+      <td>51031.04</td>
+      <td>5.333907</td>
+      <td>15.000341</td>
+      <td>9.989567</td>
+      <td>5.354428</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+### Refine the data
+
+
+
+```python
+fig, ax = plt.subplots(figsize = (18,12))
+sns.set(font_scale=3)
+sns.regplot(x = 'Jan to March Sales', y = 'Sale (Dollars)', data = X.merge(target, how = 'left', on = ('Store Number')))
+```
+
+
+![png](img/Iowa_images/Project%202%20Ravi%20Mehta_37_1.png)
+
+
+Here's a Heat Map demonstrating correlation of my predictors
+
+
+![png](img/Iowa_images/Project%202%20Ravi%20Mehta_38_0.png)
+
+
+
+```python
+#this takes a while to run, it just visualizes the above correlation matrix
+sns.set()
+sns.pairplot(X.merge(target, how = 'left', on = ('Store Number')))
+```
+
+![png](img/Iowa_images/Project%202%20Ravi%20Mehta_40_1.png)
+
+
+## Building the model
+
+I used sklearn to build a regression model and evaluated it's performance
+
+I standardized my values first before I threw them into my model, This is almost always a good idea and necessary when using regularization. It prevents variables with larger numerical scales from overshadowing variables with smaller numerical scales. 
+
+I also cross validated to find the best hyperparameters, in this case 'C' for our error terms in the regularized regression model. I'm not going to put the code here, you can see it all on my [github](https://github.com/rdamehta/Iowa-liquor-sales/tree/master/code)
+
+## Results
+
+I plotted the predictions of my models below
+
+![png](img/Iowa_images/Project%202%20Ravi%20Mehta_52_1.png)
+
+
+
+## Summary 
+On average the difference in yearly sales for iowa liquor stores from 2016 to 2015 was 9,215, thats a $9,215 per store on average increase in yearly sales in 2016, very little difference bewteen my Ridge Regression and linear regression models, most likely because jan - March sales were so heavily correlated with total Sales.
