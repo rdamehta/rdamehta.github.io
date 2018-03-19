@@ -88,30 +88,29 @@ In keeping with xkcd comic above, lets use xkcd style in our graphs!
 
 
 
-<img src="img/Iowa_images/Project%202%20Ravi%20Mehta_11_1.png" alt="Cities" style="width: 750px; height: 600px"/>
-
-![png]test(img/Iowa_images/Project%202%20Ravi%20Mehta_11_1.png)
-
+<img src="img/Iowa_images/Project%202%20Ravi%20Mehta_11_1.png" alt="Cities" style="width: 700px; height: 600px"/>
 
 
 ### Here are a few stores with the best sales for the year of 2015
 
 
 
+<img src="img/Iowa_images/Project%202%20Ravi%20Mehta_13_1.png" alt="Cities" style="width: 700px; height: 600px"/>
 
-![png](img/Iowa_images/Project%202%20Ravi%20Mehta_13_1.png)
 
 
 
 ### Avg Retail Price per Bottle
-![png](img/Iowa_images/Project%202%20Ravi%20Mehta_15_1.png)
+
+<img src="img/Iowa_images/Project%202%20Ravi%20Mehta_15_1.png" alt="Cities" style="width: 700px; height: 600px"/>
 
 
 
 ### Cost of Bottle per store
 
+<img src="img/Iowa_images/Project%202%20Ravi%20Mehta_16_1.png" alt="Cities" style="width: 700px; height: 600px"/>
 
-![png](img/Iowa_images/Project%202%20Ravi%20Mehta_16_1.png)
+
 
 ### Cost and Retail plotted on the same graph, I included some code to see how seaborn uses matplotlib functionality
 
@@ -148,19 +147,18 @@ plt.legend()
 
 
 
-
-![png](img/Iowa_images/Project%202%20Ravi%20Mehta_17_1.png)
-
+<img src="img/Iowa_images/Project%202%20Ravi%20Mehta_17_1.png" alt="Cities" style="width: 700px; height: 600px"/>
 
 
 
 
-![png](img/Iowa_images/Project%202%20Ravi%20Mehta_19_1.png)
+
+<img src="img/Iowa_images/Project%202%20Ravi%20Mehta_19_1.png" alt="Cities" style="width: 700px; height: 600px"/>
 
 
 
+<img src="img/Iowa_images/Project%202%20Ravi%20Mehta_21_1.png" alt="Cities" style="width: 700px; height: 600px"/>
 
-![png](img/Iowa_images/Project%202%20Ravi%20Mehta_21_1.png)
 
 
 
@@ -177,7 +175,8 @@ df[df['Category Name'] == 'CANADIAN WHISKIES']['Item Description'].value_counts(
 
 
 
-![png](Project%202%20Ravi%20Mehta_files/Project%202%20Ravi%20Mehta_22_1.png)
+<img src="img/Iowa_images/Project%202%20Ravi%20Mehta_22_1.png" alt="Cities" style="width: 700px; height: 600px"/>
+
 
 
 
@@ -194,7 +193,9 @@ df[df['Category Name'] == 'STRAIGHT BOURBON WHISKIES']['Item Description'].value
 
 
 
-![png](Project%202%20Ravi%20Mehta_files/Project%202%20Ravi%20Mehta_23_1.png)
+<img src="img/Iowa_images/Project%202%20Ravi%20Mehta_23_1.png" alt="Cities" style="width: 700px; height: 600px"/>
+
+
 
 
 ## EDA Findings summarized
@@ -495,13 +496,14 @@ sns.regplot(x = 'Jan to March Sales', y = 'Sale (Dollars)', data = X.merge(targe
 ```
 
 
-![png](img/Iowa_images/Project%202%20Ravi%20Mehta_37_1.png)
+<img src="img/Iowa_images/Project%202%20Ravi%20Mehta_37_1.png" alt="Cities" style="width: 700px; height: 600px"/>
+
 
 
 Here's a Heat Map demonstrating correlation of my predictors
 
 
-![png](img/Iowa_images/Project%202%20Ravi%20Mehta_38_0.png)
+<img src="img/Iowa_images/Project%202%20Ravi%20Mehta_38_0.png" alt="Cities" style="width: 700px; height: 600px"/>
 
 
 
@@ -511,7 +513,8 @@ sns.set()
 sns.pairplot(X.merge(target, how = 'left', on = ('Store Number')))
 ```
 
-![png](img/Iowa_images/Project%202%20Ravi%20Mehta_40_1.png)
+<img src="img/Iowa_images/Project%202%20Ravi%20Mehta_40_1.png" alt="Cities" style="width: 700px; height: 600px"/>
+
 
 
 ## Building the model
@@ -526,7 +529,8 @@ I also cross validated to find the best hyperparameters, in this case 'C' for ou
 
 I plotted the predictions of my models below
 
-![png](img/Iowa_images/Project%202%20Ravi%20Mehta_52_1.png)
+
+<img src="img/Iowa_images/Project%202%20Ravi%20Mehta_52_1.png" alt="Cities" style="width: 700px; height: 600px"/>
 
 
 
