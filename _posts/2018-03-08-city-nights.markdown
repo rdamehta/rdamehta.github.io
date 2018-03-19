@@ -4,7 +4,7 @@ subtitle: "A Comparison of 3 Common Clustering Algorithims"
 author: "Ravi"
 avatar: "img/authors/the-wire-couch.png"
 image: "img/clusters.jpg"
-date:   2018-08-08 12:12:12
+date:   2018-03-08 12:12:12
 ---
 
 
