@@ -90,7 +90,7 @@ In keeping with xkcd comic above, lets use xkcd style in our graphs!
 
 img/Iowa_images/Project%202%20Ravi%20Mehta_11_1.png
 
-![png](img/Iowa_images/Project%202%20Ravi%20Mehta_11_1.png)
+![png](img/Iowa_images/Project%202%20Ravi%20Mehta_11_1.png =400x)
 
 
 
