@@ -13,15 +13,18 @@ date:   2018-03-08 12:12:12
 
 I wanted to visually test three of the clustering algorithms that are commonly used on 7 data sets that are specifically designed to evaluate clustering algorithm effectiveness.
 
-The three algorithims I'm going to use are 
-K-means: k-means clustering.
-Agglomerative clustering: hierarchical clustering (bottom up).
+The three algorithims I'm going to use are:
+
+K-means: k-means clustering
+
+Agglomerative clustering: hierarchical clustering (bottom up)
+
 DBSCAN: density-based clustering.
 
 Clustering, I believe, is particularly suited for visual representations, and it's very easy to gain an intuition on how each algorithim performs based on visuals.
 
 
-For ease of use the 7 datasets I generated have 2 dimensions, an X and y coordinate. Remember that in unsupervised learning methods like clustering, there generally will not be "true labels."  I provided them here as colors simply as a convenience to be able to compare with he algorithims 
+For ease of use the 7 datasets I generated have 2 dimensions, an X and y coordinate. Remember that in unsupervised learning methods like clustering, there generally will not be "true labels."  I provided them here as colors simply as a convenience to be able to compare with the algorithims 
 
 
 
