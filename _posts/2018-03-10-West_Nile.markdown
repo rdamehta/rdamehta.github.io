@@ -12,7 +12,7 @@ This project was particularly fascinating to me for a multitude of reasons.
  
 Having actually suffered and recovered from malaria, I was interested in how mosquito vectors could spread other diseases, and with my background in public health and medicine I wanted to know how West Nile spread in Chicago. 
 
-I got the inspiration from browsing kaggle datasets as we data scientists do looking for interesting things to play around with. This is the [kaggle competition](https://www.kaggle.com/c/predict-west-nile-virus/) for those interested.
+I got the inspiration from browsing kaggle datasets as we data scientists do looking for interesting things to play around with. This is the **[kaggle competition](https://www.kaggle.com/c/predict-west-nile-virus/)** for those interested.
 
 ### First things first: Heatmaps year by year for the training data
 Training data was data from the odd years between 2007 to 2013. The testing data set contained the even years and I treated it as sacred
@@ -39,7 +39,7 @@ And here is where they placed the traps:
 <img src="/img/traps.png" alt="traps" style="width: 400px;"/>
 
 ### Description of Project and some Results
-The task at hand was to predict where West Nile Virus would show up based on data collected from the various mosquito traps dispersed through the greater Chicago region. There were 8 species of mosquitos collected, but a vast majority of them were some type of Culex Pipiens/Restuans. Here is the distribution of positive West Nile cases by Species for every time a data was collected from a mosquito trap.
+The task at hand was to predict where West Nile Virus would show up based on data collected from the various mosquito traps dispersed through the greater Chicago region. There were 8 species of mosquitos collected, but a vast majority of them were some type of Culex Pipiens/Restuans. Here is the distribution of positive West Nile cases by Species for every time data was collected from a mosquito trap.
 
 <img src="/img/Species.png" alt="species" style="width: 700px;"/>
 
@@ -51,7 +51,7 @@ So on to the modeling! After cleaning, feature engineering, and merging the weat
 - West Nile negative: 9955 cases
 - West Nile positive: 551 cases.
 
-To combat this and prevent my model from just predicting zeros and calling it a day, I oversampled the minority classes. Essentially I artificially created more positive cases to match a 1:1 ratio with the negative cases. But first I split my data, and oversampled one spit, and used the other split as a holdout set to test my model against. 
+To combat this and prevent my model from just predicting zeros and calling it a day, I oversampled the minority classes. Essentially I artificially created more positive cases to match a 1:1 ratio with the negative cases. But first I split my data, and oversampled one split, and used the other split as a holdout set to test my model against. 
 
 Here are my results for the Random Forest Classifier:
 
