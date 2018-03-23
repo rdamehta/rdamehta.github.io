@@ -270,7 +270,7 @@ df.info()
     memory usage: 35.4+ MB
     
 
-There are a lot of columns|variables|features in this data set. I'm particularly interested Country where a conflict occured, which countries or groups of people were involved, when the event took place, How many fatalities, some notes on the conflict, and what type of conflict was it.
+There are a lot of features in this data set. I'm particularly interested Country where a conflict occured, which countries or groups of people were involved, when the event took place, How many fatalities, some notes on the conflict, and what type of conflict was it.
 
 So I am going to limit our data set to these columns
 
